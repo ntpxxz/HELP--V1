@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../assets/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="card">
+        <div class="card-body">
+                                            <div class="d-flex align-items-start align-items-sm-center gap-4">                                        
+                                            
+                                                <img src="../upload/" alt="user-avatar" width="100px" height="100px" class="d-block w-px-100 h-px-100 rounded"
+                                                    id="uploadImageAvatar">
+                                                <div class="button-wrapper">
+                                                    <label for="imgInp" class="btn btn-primary me-2 mb-3 waves-effect waves-light" tabindex="0">
+                                                        <span class="d-none d-sm-block">Upload new photo</span>
+                                                        <i class="ti ti-upload d-block d-sm-none"></i>
+                                                        <input name="imagefile" type="file" id="imgInp" accept="image"  hidden="" onchange="uploadPhotos(imageUploadUrl)" />
+                                            
+                                                    </label>
+                                                    <button type="button" class="btn btn-label-secondary account-image-reset mb-3 waves-effect">
+                                                        <i class="ti ti-refresh-dot d-block d-sm-none"></i>
+                                                        <span class="d-none d-sm-block">Reset</span>
+                                                    </button>
+                                            
+                                                    <div class="text-muted">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                                                </div>
+                                            </div>
+
+
+
+  <img src="../upload/" alt="user-avatar" width="100px" height="100px" class="d-block w-px-100 h-px-100 rounded"
+  id="uploadImageAvatar">
+    <label for="imgInp" class="btn btn-primary me-2 mb-3 waves-effect waves-light" tabindex="0">
+    <input name="imagefile" type="file" id="takePictureField" accept="image"
+        onchange="uploadPhotos(imageUploadUrl)" />
+    <form id="uploadImageForm" enctype="multipart/form-data">
+        <input id="name"/>
+        
+    </form>
+    </div>
+    </div>
+
+<script>
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            uploadImageAvatar.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+<script> 
+    window.uploadPhotos = function (url) {
+            // Read in file
+            var file = event.target.files[0];
+
+            // Ensure it's an image
+            if (file.type.match(/image.*/)) {
+                console.log('An image has been loaded');
+
+                // Load the image
+                var reader = new FileReader();
+                reader.onload = function (readerEvent) {
+                    var image = new Image();
+                    image.onload = function (imageEvent) {
+
+                        // Resize the image
+                        var canvas = document.createElement('canvas'),
+                            max_size = 544,// TODO : pull max size from a site config
+                            width = image.width,
+                            height = image.height;
+                        if (width > height) {
+                            if (width > max_size) {
+                                height *= max_size / width;
+                                width = max_size;
+                            }
+                        } else {
+                            if (height > max_size) {
+                                width *= max_size / height;
+                                height = max_size;
+                            }
+                        }
+                        canvas.width = width;
+                        canvas.height = height;
+                        canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+                        var dataUrl = canvas.toDataURL('image/jpeg');
+                        var resizedImage = dataURLToBlob(dataUrl);
+                        $.event.trigger({
+                            type: "imageResized",
+                            blob: resizedImage,
+                            url: dataUrl
+                        });
+                    }
+                    image.src = readerEvent.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        };
+    /* Handle image resized events */
+    $(document).on("imageResized", function (event) {
+        var data = new FormData($("form[id*='uploadImageForm']")[0]);
+        if (event.blob && event.url) {
+            data.append('image_data', event.blob);
+
+            $.ajax({
+                url: event.url,
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                success: function (data) {
+                    //handle errors...
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

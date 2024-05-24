@@ -1,0 +1,122 @@
+body{
+    background-color: rgb(72, 72, 161);
+} 
+
+.modalBox {
+    
+    background-color:#f1f1f1;
+    width: 550px;
+    height: auto;
+    padding: auto;
+    position: center;
+    transform: translate(-50%,-50%) scale(1);
+    left: 50%;
+    top: -150%;
+    border-radius: 5px;
+    font-family: "poppins",sans-serif;
+    box-shadow: #8f849c8c;
+    opacity: 0;
+    transition: top 0ms ease-in-out 200ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
+} 
+.modalBox .active{
+    opacity: 1;
+    top: 50%;
+    transition: top 0ms ease-in-out 0ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
+   
+}
+
+.modal-content{
+    border-radius: 5px;
+}
+ .modal button {
+    display: flex;
+    margin-block-end: 0%;
+    background-color:transparent;
+    font-size: 20px;
+    border: transparent;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    padding: 0.5rem;
+   
+}
+.modal-footer{
+    justify-content: flex-start;
+}
+button.bt-success {
+    width: 100px;
+    height: 35px;
+    background-color: rgb(99, 192, 99);
+    border-radius: 3px;
+    border-color: transparent;
+    color: #ffffff;
+   justify-content: flex-start;
+}
+button.bt-warning {
+    width: 80px;
+    height: 35px;
+    background-color: rgb(129, 129, 146);
+    border-radius: 3px;
+    border-color: transparent;
+    color: #ffffff;
+    
+}
+ button.bt-danger {
+    width: 80px;
+    height: 35px;
+    background-color: rgb(235, 62, 62);
+    border-radius: 3px;
+    border-color: transparent;
+    color: #ffffff;
+    justify-content: left;
+}
+
+.modal p{
+    font-size: 14px;
+    text-align: justify;
+    margin: 20px 0;
+
+}
+a{
+    display: block;
+    width:  150px;
+    position: relative;
+    margin: auto;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 0;
+}
+.modal-content{
+    border-radius:0.5rem;
+
+}
+ .modal-header {
+    text-align: center;
+    background-color: rgb(19, 17, 17);
+    padding: 1.3rem;
+    justify-content: center;
+    border-radius:  5px 5px 0 0;
+    color: #ffffff;
+}
+.modal-header
+h5 {
+    color: #ffffff;
+
+}
+
+.modal .modal-body{
+    padding: 1rem;
+    border-radius: 5px;
+}
+modal-fade{
+    border-radius: 5px;
+}
+button .bi.bi-x-lg{
+    color: #ffffff8c;
+    
+   
+}

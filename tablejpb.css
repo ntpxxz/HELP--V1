@@ -1,0 +1,56 @@
+:root {
+    scroll-behavior: smooth;
+    --color-white: #ffffff;
+    --color-light: #f0eff5;
+    --color-gray-light: #86848c;
+    --color-gray-dark: #56555e;
+    --color-dark: #27282f;
+    --color-primary: #7780ec;
+    --color-success: #41f1b6;
+    --color-ganger: #ff7782;
+    --color-warning: #ffbb55;
+    --color-purple: rgb(160, 99, 245) --color-primary-light: rgba(71, 139, 200, 0.18);
+    --color-success-light: rgb(25, 120, 70, 0.5);
+    --color-danger-light: rgb(225, 67, 54, 0.4);
+    --color-purple-light: rgb(160, 99, 245, 0.2);
+
+
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #667483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius-1: 0.3rem;
+    --card-border-radiu-2: 1.6rem;
+    --border-radius-1: 1rem;
+    --border-radius-2: 6px;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.4rem;
+    --padding-1: 1.2rem;
+    --padding-2: 8px;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+/*******job status*******/
+main .job-status{
+    margin-top: 2rem;
+}
+main .job-status h2{
+    margin-bottom: 2rem;
+}
+main .job-status table{
+    background: var(--color-dark-variant);
+    width: 100;
+    border-radius: var(--card-border-radius-1);
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+main .job-status table:hover{
+    box-shadow: none;
+}
